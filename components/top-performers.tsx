@@ -3,46 +3,30 @@
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import { useEffect, useState } from "react"
 
-const topShows = [
-  {
-    id: 1,
-    name: "Hamilton",
-    revenue: 125000,
-    percentOfTotal: 28,
-    image: "/placeholder.svg?height=80&width=120",
-  },
-  {
-    id: 2,
-    name: "The Lion King",
-    revenue: 98000,
-    percentOfTotal: 22,
-    image: "/placeholder.svg?height=80&width=120",
-  },
-  {
-    id: 3,
-    name: "Wicked",
-    revenue: 87500,
-    percentOfTotal: 19,
-    image: "/placeholder.svg?height=80&width=120",
-  },
-  {
-    id: 4,
-    name: "The Phantom of the Opera",
-    revenue: 76000,
-    percentOfTotal: 17,
-    image: "/placeholder.svg?height=80&width=120",
-  },
-  {
-    id: 5,
-    name: "Les Misérables",
-    revenue: 62000,
-    percentOfTotal: 14,
-    image: "/placeholder.svg?height=80&width=120",
-  },
-]
+interface TopShows {
+    id: number
+    name: string
+    revenue: number
+    percentOfTotal: number
+    image: string
+}
+
 
 export function TopPerformers() {
+    const [topShows, setTopShows] = useState<TopShows[]>([])
+    const fetchData = async () => {
+        const responseFromAi = await fetch('/api/getTopShows');
+        const jsonData = await responseFromAi.json();
+        setTopShows(jsonData);
+    }
+    useEffect(() => {
+        if (topShows.length === 0) {
+            fetchData();
+        }
+    }
+        , [topShows]);
   return (
     <div className="space-y-4">
       {topShows.map((show) => (
