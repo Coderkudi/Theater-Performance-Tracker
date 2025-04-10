@@ -11,7 +11,7 @@ export default function Dashboard() {
     <div className="flex-1 space-y-4 p-6 pt-6">
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-        <div className="flex items-center space-x-2">
+              {/* <div className="flex items-center space-x-2">
           <Tabs defaultValue="week" className="w-[300px]">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="week">Week</TabsTrigger>
@@ -19,7 +19,7 @@ export default function Dashboard() {
               <TabsTrigger value="year">Year</TabsTrigger>
             </TabsList>
           </Tabs>
-        </div>
+        </div> */}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

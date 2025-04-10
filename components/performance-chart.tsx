@@ -1,46 +1,66 @@
 "use client"
 
+import { get } from "http";
+import { useEffect, useState } from "react"
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 
-const data = [
-  {
-    name: "Jan",
-    tickets: 1200,
-    occupancy: 65,
-  },
-  {
-    name: "Feb",
-    tickets: 1500,
-    occupancy: 72,
-  },
-  {
-    name: "Mar",
-    tickets: 1800,
-    occupancy: 78,
-  },
-  {
-    name: "Apr",
-    tickets: 1600,
-    occupancy: 74,
-  },
-  {
-    name: "May",
-    tickets: 2100,
-    occupancy: 82,
-  },
-  {
-    name: "Jun",
-    tickets: 2400,
-    occupancy: 85,
-  },
-  {
-    name: "Jul",
-    tickets: 2350,
-    occupancy: 78,
-  },
-]
+interface PerformanceType {
+    name: string
+    tickets: number
+    occupancy: number
+}
+
+// const data = [
+//   {
+//     name: "Jan",
+//     tickets: 1200,
+//     occupancy: 65,
+//   },
+//   {
+//     name: "Feb",
+//     tickets: 1500,
+//     occupancy: 72,
+//   },
+//   {
+//     name: "Mar",
+//     tickets: 1800,
+//     occupancy: 78,
+//   },
+//   {
+//     name: "Apr",
+//     tickets: 1600,
+//     occupancy: 74,
+//   },
+//   {
+//     name: "May",
+//     tickets: 2100,
+//     occupancy: 82,
+//   },
+//   {
+//     name: "Jun",
+//     tickets: 2400,
+//     occupancy: 85,
+//   },
+//   {
+//     name: "Jul",
+//     tickets: 2350,
+//     occupancy: 78,
+//   },
+// ]
 
 export function PerformanceChart() {
+    const [data, setData] = useState<PerformanceType[]>([]);
+    const fetchData = async () => {
+        const responseFromAi = await fetch('/api/getPerformanceData');
+        const jsonData: PerformanceType[] = await responseFromAi.json();
+        setData(jsonData);
+    }
+    useEffect(() => {
+        if (data.length === 0) {
+            fetchData();
+        }
+    }, [data])
+
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart data={data}>
