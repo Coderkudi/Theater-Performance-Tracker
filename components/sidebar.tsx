@@ -21,26 +21,26 @@ const routes = [
     icon: Ticket,
     href: "/shows",
   },
-  {
-    label: "Schedule",
-    icon: Calendar,
-    href: "/schedule",
-  },
-  {
-    label: "Audience",
-    icon: Users,
-    href: "/audience",
-  },
+    //   {
+    //     label: "Schedule",
+    //     icon: Calendar,
+    //     href: "/schedule",
+    //   },
+    //   {
+    //     label: "Audience",
+    //     icon: Users,
+    //     href: "/audience",
+    //   },
   {
     label: "AI Insights",
     icon: Sparkles,
     href: "/insights",
   },
-  {
-    label: "Settings",
-    icon: Settings,
-    href: "/settings",
-  },
+    //   {
+    //     label: "Settings",
+    //     icon: Settings,
+    //     href: "/settings",
+    //   },
 ]
 
 export default function Sidebar() {

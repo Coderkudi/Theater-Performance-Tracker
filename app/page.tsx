@@ -40,7 +40,7 @@ export default function Dashboard() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$45,231.89</div>
+                      <div className="text-2xl font-bold">₹{Math.ceil(Math.random() * 1000000).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">+20.1% from last month</p>
           </CardContent>
         </Card>
@@ -63,7 +63,7 @@ export default function Dashboard() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2,350</div>
+                      <div className="text-2xl font-bold">{Math.ceil(Math.random() * 100000).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">+15% from last month</p>
           </CardContent>
         </Card>
@@ -85,7 +85,7 @@ export default function Dashboard() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">78.5%</div>
+                      <div className="text-2xl font-bold">₹{Math.ceil(Math.random() * 100).toLocaleString()}%</div>
             <p className="text-xs text-muted-foreground">+5.2% from last month</p>
           </CardContent>
         </Card>
@@ -106,7 +106,7 @@ export default function Dashboard() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
+                      <div className="text-2xl font-bold">{Math.ceil(Math.random() * 100).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">+2 from last month</p>
           </CardContent>
         </Card>
