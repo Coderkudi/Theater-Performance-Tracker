@@ -2,56 +2,31 @@
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-
-const upcomingShows = [
-  {
-    id: 1,
-    name: "Hamilton",
-    theater: "Grand Theater",
-    date: "May 15, 2025",
-    ticketsSold: 450,
-    capacity: 500,
-    status: "Almost Sold Out",
-  },
-  {
-    id: 2,
-    name: "The Phantom of the Opera",
-    theater: "Royal Playhouse",
-    date: "May 18, 2025",
-    ticketsSold: 380,
-    capacity: 600,
-    status: "On Sale",
-  },
-  {
-    id: 3,
-    name: "Les Misérables",
-    theater: "City Arts Center",
-    date: "May 22, 2025",
-    ticketsSold: 290,
-    capacity: 400,
-    status: "On Sale",
-  },
-  {
-    id: 4,
-    name: "Wicked",
-    theater: "Grand Theater",
-    date: "May 25, 2025",
-    ticketsSold: 500,
-    capacity: 500,
-    status: "Sold Out",
-  },
-  {
-    id: 5,
-    name: "The Lion King",
-    theater: "Royal Playhouse",
-    date: "May 30, 2025",
-    ticketsSold: 420,
-    capacity: 600,
-    status: "On Sale",
-  },
-]
+import { useEffect, useState } from "react"
+interface Shows {
+    id: number;
+    name: string;
+    theater: string;
+    date: string;
+    ticketsSold: number;
+    capacity: number;
+    status: string;
+}
 
 export function UpcomingShows() {
+    const [upcomingShows, setUpcomingShows] = useState<Shows[]>([]);
+    const fetchData = async () => {
+        const res = await fetch("/api/getUpcomingShows");
+        const data = await res.json();
+        setUpcomingShows(data);
+    }
+    useEffect(() => {
+        if (upcomingShows.length === 0) {
+            fetchData();
+        }
+
+    }, [upcomingShows])
+
   return (
     <Table>
       <TableHeader>
@@ -73,7 +48,7 @@ export function UpcomingShows() {
             <TableCell>
               <Badge
                 variant={
-                  show.status === "Sold Out" ? "destructive" : show.status === "Almost Sold Out" ? "warning" : "default"
+                            show.status === "Sold Out" ? "destructive" : show.status === "Almost Sold Out" ? "secondary" : "default"
                 }
               >
                 {show.status}

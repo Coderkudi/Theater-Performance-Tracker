@@ -1,18 +1,29 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts"
 
-const data = [
-  { name: "Ticket Sales", value: 65 },
-  { name: "Concessions", value: 15 },
-  { name: "Merchandise", value: 10 },
-  { name: "Sponsorships", value: 10 },
-]
+interface Data {
+    name: string
+    value: number
+}
 
 const COLORS = ["#ef4444", "#f59e0b", "#3b82f6", "#10b981"]
 
 export function RevenueChart() {
-  return (
+    const [data, setdata] = useState<Data[]>([])
+    const fetchData = async () => {
+        const responseFromAi = await fetch('/api/getRevenueChartData');
+        const jsonData = await responseFromAi.json();
+        setdata(jsonData);
+    }
+    useEffect(() => {
+        if (data.length === 0) {
+            fetchData();
+        }
+    }
+        , [data]);
+    return (
     <ResponsiveContainer width="100%" height={300}>
       <PieChart>
         <Pie
